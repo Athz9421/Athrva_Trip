@@ -52,6 +52,7 @@ describe("Landing Page Tests", function () {
     expect(document.getElementById("london")).toBeTruthy();
 
     //add checks for tile and parent div has an id of data
+    
   });
 
 });
