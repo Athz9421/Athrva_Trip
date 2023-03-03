@@ -41,7 +41,7 @@ function addCityToDOM(id, city, description, image) {
   let newele= document.getElementById("data");
   let col= document.createElement("div");
   col.classList.add("col-6", "col-lg-3", "mb-4" );
-  col.setAttribute('id',city);
+  col.setAttribute('id',id);
  col.innerHTML=`
  <a href="/pages/adventures/${id}">
                       <div class="tile">
