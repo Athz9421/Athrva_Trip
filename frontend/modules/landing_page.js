@@ -9,7 +9,7 @@ async function init() {
   cities.forEach((key) => {
     addCityToDOM(key.id, key.city, key.description, key.image);
   });
-  addCityToDOM("london", "London", "London", "London");
+  
 
 }
 
