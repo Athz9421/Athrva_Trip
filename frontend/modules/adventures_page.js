@@ -5,13 +5,25 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-
+  const ulr= new URLSearchParams(search);
+  return ulr.get('city');
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
+  try {
+    return await fetch(`http://3.6.242.8:8082/adventures?city=${city}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        return data;
+      });
+  } catch (err) {
+    return null;
+  }
 
 }
 
@@ -19,6 +31,37 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
+  let d= document.getElementById("data");
+  adventures.forEach(key => {
+    
+    let col=document.createElement("div");
+    col.classList.add( "col-lg-3", "mb-4","col-12");
+    col.innerHTML=`
+    <a href="detail/?adventure=${key.id}" id="${key.id}">
+         <div class="card activity-card">
+            <div class="category-banner ">${key.category}</div>
+            <img  class="actity-card-image"src="${key.image}" alt="">
+            <div class="w-100 flex-sm-wrap ">
+            <div class="card-body   text-center d-flex justify-content-between ">
+              <h5 class="">${key.name}</h5>
+              <p class="">₹${key.costPerHead}</p>
+            </div>
+            <div class="card-body  text-center d-flex justify-content-between">
+            <h5 class="">Duration</h5>
+             <p class="">${key.duration}Hr</p>
+           </div>
+          </div>
+          </div>
+        </a>
+    `  
+d.appendChild(col);
+
+  });
+
+  
+
+
+  
 
 }
 
@@ -33,6 +76,7 @@ function filterByDuration(list, low, high) {
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on their Category and return filtered list
+
 
 }
 

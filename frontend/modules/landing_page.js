@@ -9,41 +9,36 @@ async function init() {
   cities.forEach((key) => {
     addCityToDOM(key.id, key.city, key.description, key.image);
   });
-  
-
 }
 
 //Implementation of fetch call
-async function  fetchCities() {
+async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
-  try{
-    return await fetch("http://3.109.215.234:8082/cities")
-
-     .then((response) => 
-     {
-       return response.json();
-     })
-     .then((data) => {
-      return data;
-     });
+  try {
+    return await fetch("http://3.6.242.8:8082/cities")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        return data;
+      });
+  } catch (err) {
+    return null;
   }
-catch(err){
-  return null;
-}
-
 }
 
 //Implementation of DOM manipulation to add cities
 function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
-  let newele= document.getElementById("data");
-  let col= document.createElement("div");
-  col.classList.add("col-6", "col-lg-3", "mb-4" );
-  col.setAttribute('id',id);
- col.innerHTML=`
- <a href="/pages/adventures/${id}">
+  let newele = document.getElementById("data");
+  let col = document.createElement("div");
+  col.classList.add("col-6", "col-lg-3", "mb-4");
+  col.setAttribute("id", id);
+  col.innerHTML = `
+  <a  href="pages/adventures/?city=${id}" id="${id}">
+ 
                       <div class="tile">
                         <div class="tile-text text-center">
                           <h5>${city} <h5>
@@ -53,11 +48,10 @@ function addCityToDOM(id, city, description, image) {
                         <img src=${image} alt="">
                  
                       </div>
-</a>
+  </a>
  
- `
- newele.appendChild(col);
-
+ `;
+  newele.appendChild(col);
 }
 
 export { init, fetchCities, addCityToDOM };
