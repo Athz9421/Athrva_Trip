@@ -5,7 +5,6 @@ async function init() {
   let cities = await fetchCities();
 
   //Updates the DOM with the cities
-
   cities.forEach((key) => {
     addCityToDOM(key.id, key.city, key.description, key.image);
   });
@@ -16,7 +15,7 @@ async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
   try {
-    return await fetch("http://3.6.242.8:8082/cities")
+    return await fetch("http://43.205.1.108:8082/cities")
       .then((response) => {
         return response.json();
       })
