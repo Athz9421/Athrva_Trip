@@ -15,7 +15,7 @@ async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
   try {
-    return await fetch("http://43.205.1.108:8082/cities")
+    return await fetch(config.backendEndpoint+"/cities" )
       .then((response) => {
         return response.json();
       })
