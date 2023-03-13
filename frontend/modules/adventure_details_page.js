@@ -13,7 +13,7 @@ async function fetchAdventureDetails(adventureId) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Fetch the details of the adventure by making an API call
   try {
-    const result=await fetch(`http://3.6.50.57:8082/adventures/detail?adventure=${adventureId}`);
+    const result=await fetch(`http://65.0.63.91:8082/adventures/detail?adventure=${adventureId}`);
       const data= await result.json();
      return data;
   } catch (err) {
@@ -25,12 +25,18 @@ async function fetchAdventureDetails(adventureId) {
 
 //Implementation of DOM manipulation to add adventure details to DOM
 function addAdventureDetailsToDOM(adventure) {
-  const newLocal = "";
+ 
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Add the details of the adventure to the HTML DOM
  document.getElementById("adventure-name").innerHTML=adventure.name;
  document.getElementById("adventure-subtitle").innerHTML=adventure.subtitle;
   document.getElementById("adventure-content").innerHTML=adventure.content;
+  adventure.images.forEach(img=>{
+    let d= document.createElement("div");
+    d.className="activity-card-image"
+    d.innerHTML=`<img src="${img}" alt="Girl in a jacket">`
+    document.getElementById("photo-gallery").append(d);
+  })
 
 
 }
@@ -59,9 +65,10 @@ function addBootstrapPhotoGallery(images) {
 
 images.forEach((img , imgIndex) => {
   let carouselElement= document.createElement("div");
+  carouselElement.className="activity-card-image";
   let Eleactive= imgIndex===0 ? " active":"";
   carouselElement.className=`carousel-item${Eleactive}`
- carouselElement.innerHTML=` <img src="${img}" class="d-block w-100 activity-card-image" alt="">`
+ carouselElement.innerHTML=` <img src="${img}" class="d-block w-100 " alt="">`
  document.getElementById("carousel-inner").append(carouselElement);
 
  let indicators=`<button type="button"
@@ -75,6 +82,7 @@ images.forEach((img , imgIndex) => {
 document.getElementById("carousel-indicators").innerHTML+=indicators;
 
 });
+console.log()
 }
 
 //Implementation of conditional rendering of DOM based on availability
