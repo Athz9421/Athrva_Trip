@@ -6,8 +6,8 @@ function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
   const ulr= new URLSearchParams(search);
-  return ulr.get('city');
- 
+ const city= ulr.get('city');
+ return city;
 }
 
 //Implementation of fetch call with a paramterized input based on city
@@ -16,14 +16,11 @@ async function fetchAdventures(city) {
   // 1. Fetch adventures using the Backend API and return the data
 
   try {
-    return await fetch(config.backendEndpoint+`/adventures?city=${city}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        return data;
-      });
-  } catch (err) {
+    const result=await fetch(`http://3.6.50.57:8082/adventures?city=${city}`)
+      const data= await result.json();
+      console.log(data);
+     return data;
+  }catch (e) {
     return null;
   }
 

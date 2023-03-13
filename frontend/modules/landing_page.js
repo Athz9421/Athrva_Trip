@@ -5,9 +5,11 @@ async function init() {
   let cities = await fetchCities();
 
   //Updates the DOM with the cities
+  if(cities){
   cities.forEach((key) => {
     addCityToDOM(key.id, key.city, key.description, key.image);
   });
+  }
 }
 
 //Implementation of fetch call
@@ -15,14 +17,10 @@ async function fetchCities() {
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
   try {
-    return await fetch(config.backendEndpoint+"/cities" )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        return data;
-      });
-  } catch (err) {
+    const result=await fetch(`http://3.6.50.57:8082/cities`)
+      const data= await result.json();
+     return data;
+  }catch (e) {
     return null;
   }
 }
@@ -34,7 +32,7 @@ function addCityToDOM(id, city, description, image) {
   let newele = document.getElementById("data");
   let col = document.createElement("div");
   col.classList.add("col-6", "col-lg-3", "mb-4");
-  col.setAttribute("id", id);
+ 
   col.innerHTML = `
   <a  href="pages/adventures/?city=${id}" id="${id}">
  
@@ -47,9 +45,7 @@ function addCityToDOM(id, city, description, image) {
                         <img src=${image} alt="">
                  
                       </div>
-  </a>
- 
- `;
+  </a>`;
   newele.appendChild(col);
 }
 

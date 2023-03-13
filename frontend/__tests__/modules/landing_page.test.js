@@ -51,8 +51,14 @@ describe("Landing Page Tests", function () {
     addCityToDOM("london", "London", "London", "London");
     expect(document.getElementById("london")).toBeTruthy();
 
-    //add checks  for tile and parent div has an id of data
-
+    //add checks for tile and parent div has an id of data
   });
 
+  it("Correctly links City Card to Adventures page", function () {
+    const expected = "adventures/?city=london";
+    addCityToDOM("london", "London", "London", "London");
+    expect(document.getElementById("london").href).toEqual(
+      expect.stringContaining(expected)
+    );
+  });
 });
