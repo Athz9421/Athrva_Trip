@@ -16,7 +16,7 @@ async function fetchAdventures(city) {
   // 1. Fetch adventures using the Backend API and return the data
 
   try {
-    const result=await fetch(`http://65.0.63.91:8082/adventures?city=${city}`)
+    const result=await fetch(config.backendEndpoint+`/adventures?city=${city}`)
       const data= await result.json();
       console.log(data);
      return data;
@@ -126,6 +126,7 @@ function saveFiltersToLocalStorage(filters) {
   // 1. Store the filters as a String to localStorage
   localStorage.setItem("filters", JSON.stringify(filters));
   
+
   return true;
 }
 
@@ -139,6 +140,8 @@ if(null!= filterstring)
   return JSON.parse(filterstring);
 }  
   
+
+
   // Place holder for functionality to work in the Stubs
   return null;
 }
